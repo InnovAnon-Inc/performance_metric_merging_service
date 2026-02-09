@@ -1,7 +1,7 @@
 # performance metric merging service
 # handles -march= / -mtune= architecture-specific distribution
 
-FROM python:3.13-slim as builder
+FROM python:3.13-slim AS builder
 
 RUN apt-get update                             \
 &&  apt-get install -y --no-install-recommends \
@@ -14,6 +14,7 @@ RUN apt-get update                             \
 &&  rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir \
+    build                      \
     cython                     \
     fastapi                    \
     python-multipart           \
