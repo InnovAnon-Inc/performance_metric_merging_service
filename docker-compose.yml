@@ -1,0 +1,22 @@
+services:
+
+  performance_metric_merging_service: # handles -march= / -mtune= architecture-specific distribution
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: performance_metric_merging_service
+    restart: unless-stopped
+    hostname: performance_metric_merging_service.innovanon.com
+    #network_mode: "host"
+    environment:
+      - VIRTUAL_HOST=performance_metric_merging_service.innovanon.com
+      - VIRTUAL_PORT=9321
+      - PROFILE_DIR=/var/lib/chimera/profiles
+    volumes:
+      - performance_metric_merging_service-profiles:/var/lib/chimera/profiles
+#    depends_on:
+#      - ssl-companion
+
+volumes:
+  performance_metric_merging_service-profiles:
+
