@@ -50,7 +50,10 @@ if __name__ == '__main__':
 def setup(*args, **kwargs) -> None:
     merge_compiler_flags()
     _kwargs = dict(kwargs)
-    _kwargs['ext_modules'] = cythonize(Extension('*', ['*/*.pyx'], language='c++'), compiler_directives={'language_level': '3'})
+    _kwargs['ext_modules'] = cythonize(
+            Extension('*', ['*/*.pyx'], language='c++'), compiler_directives={'language_level': '3'},
+            exclude=['__main__.py']  # Explicitly keep this as Python
+    )
     if 'packages' not in kwargs:
         _kwargs['packages'] = find_packages(exclude=['build*', 'dist*', 'tests*', 'logs*', '__pycache__*', '.*'])
     _setup(*args, **_kwargs)
