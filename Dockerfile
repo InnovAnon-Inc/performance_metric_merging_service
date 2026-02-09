@@ -25,6 +25,13 @@ WORKDIR /app
 ENV SETUPTOOLS_SCM_PRETEND_VERSION_FOR_IA=0.0.0
 
 ENV PYTHONPATH="/app"
-RUN pip install --no-cache-dir .
+#RUN pip install --no-cache-dir .
+RUN python -m build --wheel --outdir /dist
+
+FROM python:3.11-slim
+WORKDIR /app
+COPY --from=builder /dist/*.whl .
+RUN pip install --no-cache-dir *.whl \
+&&  rm -v *.whl
 
 ENTRYPOINT ["python", "-u", "-m", "performance_metric_merging_service"]
