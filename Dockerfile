@@ -1,7 +1,7 @@
 # performance metric merging service
 # handles -march= / -mtune= architecture-specific distribution
 
-FROM python:3.13-slim
+FROM python:3.13-slim as builder
 
 RUN apt-get update                             \
 &&  apt-get install -y --no-install-recommends \
