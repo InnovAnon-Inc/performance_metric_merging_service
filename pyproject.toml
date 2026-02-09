@@ -1,6 +1,5 @@
 [build-system]
 requires = [
-    "build",
     "Cython",
     "setuptools>=61.0.0",
     "setuptools-scm>=8.0",
