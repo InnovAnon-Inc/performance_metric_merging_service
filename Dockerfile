@@ -8,6 +8,7 @@ RUN apt-get update                             \
     binutils                                   \
     gcc                                        \
     g++                                        \
+    git                                        \
     libc6-dev                                  \
     llvm                                       \
 &&  rm -rf /var/lib/apt/lists/*
